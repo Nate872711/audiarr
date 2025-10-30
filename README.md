@@ -2,7 +2,7 @@
 
 Audiarr — audiobook manager (scaffold).
 
-This version assumes **Prowlarr**, **Deluge**, and **NZBGet** run externally (not in Docker). Audiarr will:
+Audiarr will:
 - Search AudiobookBay (configurable) for magnets.
 - Queue downloads to Deluge/NZBGet if configured.
 - **Auto-import** completed files by scanning the configured downloads completed folder and moving files into `/data/audiobooks`, and creating DB records.
