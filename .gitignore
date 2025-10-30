@@ -1,0 +1,10 @@
+node_modules/
+dist/
+bin/
+obj/
+.env
+/data/
+pgdata/
+.vscode/
+*.user
+*.vs
