@@ -15,6 +15,40 @@ cd audiarr
 docker compose up --build
 ```
 
+Docker Compose
+```bash
+services:
+  audiarr-api:
+    build: ./backend
+    container_name: audiarr-api
+    ports:
+      - "5080:5080"
+    environment:
+      - ASPNETCORE_URLS=http://+:5080
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - db
+
+  audiarr-ui:
+    build: ./frontend
+    container_name: audiarr-ui
+    ports:
+      - "3080:80"
+    depends_on:
+      - audiarr-api
+
+  db:
+    image: postgres:16
+    container_name: audiarr-db
+    environment:
+      POSTGRES_USER: audiarr
+      POSTGRES_PASSWORD: audiarr
+      POSTGRES_DB: audiarr
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+```
+
 Important directories (mounted by docker-compose):
 - `./data/audiobooks` — library storage (import target)
 - `./data/downloads` — downloads folder expected to contain `completed/` for finished downloads
