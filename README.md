@@ -1,4 +1,8 @@
+
+
 # Audiarr
+
+Audiarr is a modern, self-hosted audiobook management and automation system inspired by Readarr
 
 Audiarr — audiobook manager (scaffold).
 
