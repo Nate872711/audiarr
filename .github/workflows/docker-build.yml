@@ -31,3 +31,5 @@ jobs:
           context: ./frontend
           push: true
           tags: nate8727/audiarr-web:latest
+          build-args: |
+            VITE_API_URL=http://localhost:5080
