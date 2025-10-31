@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
 
   audiarr-api:
-    build: ./backend
+    image: nate872711/audiarr
     container_name: audiarr-api
     environment:
       - DATABASE_URL=postgresql://audiarr:audiarr_pass@postgres:5432/audiarr
@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
 
   audiarr-web:
-    build: ./frontend
+    image: nate872711/audiarr
     container_name: audiarr-web
     environment:
       - VITE_API_URL=http://localhost:5080
