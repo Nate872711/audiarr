@@ -40,7 +40,6 @@ Open:
 ### Example production docker-compose snippet (use images from Docker Hub)
 
 ```yaml
-version: "3.9"
 services:
   audiarr-db:
     image: postgres:16
