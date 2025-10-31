@@ -1,23 +1,23 @@
-# === Audiarr Frontend Dockerfile ===
+# === Audiarr Frontend Dockerfile (CI-safe) ===
 
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Copy dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy the rest of the frontend source
+# Copy all source code
 COPY . .
 
-# ✅ Set a default API URL to avoid undefined build-time env vars
+# ✅ Provide a default API URL to prevent build errors
 ARG VITE_API_URL=http://localhost:5080
 ENV VITE_API_URL=${VITE_API_URL}
 
-# ✅ Run build with explicit environment
-RUN echo "VITE_API_URL=$VITE_API_URL" && npm run build
+# ✅ Run the build safely
+RUN echo "Building with VITE_API_URL=${VITE_API_URL}" && npm run build
 
-# === Runtime container ===
+# === Serve via NGINX ===
 FROM nginx:stable-alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 3000
