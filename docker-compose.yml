@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: audiarr-postgres
+    environment:
+      POSTGRES_USER: audiarr
+      POSTGRES_PASSWORD: audiarr_pass
+      POSTGRES_DB: audiarr
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  audiarr-api:
+    build: ./backend
+    container_name: audiarr-api
+    environment:
+      - DATABASE_URL=postgresql://audiarr:audiarr_pass@postgres:5432/audiarr
+      - SETTINGS_PATH=/app/config/settings.json
+    depends_on:
+      - postgres
+    ports:
+      - "5080:80"
+    volumes:
+      - ./data/audiobooks:/data/audiobooks
+      - ./data/downloads:/data/downloads
+      - ./data/config:/app/config
+    restart: unless-stopped
+
+  audiarr-web:
+    build: ./frontend
+    container_name: audiarr-web
+    environment:
+      - VITE_API_URL=http://localhost:5080
+    ports:
+      - "3080:3000"
+    depends_on:
+      - audiarr-api
+    restart: unless-stopped
+
+volumes:
+  pgdata:

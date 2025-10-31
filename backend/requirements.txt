@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+httpx
+sqlalchemy
+databases[postgresql]
+alembic
+pydantic
+python-multipart
+python-dotenv
+apscheduler
