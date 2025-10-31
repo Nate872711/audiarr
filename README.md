@@ -28,7 +28,7 @@
 ## 🚀 Quick Start (Docker Compose)
 
 ```bash
-git clone https://github.com/Nate872711/audiarr.git
+git clone https://github.com/nate872711/audiarr.git
 cd audiarr
 docker compose up --build
 ```
@@ -86,7 +86,7 @@ Default import path: `/data/downloads/completed`
 
 ## 🐋 CI/CD
 
-GitHub Actions workflow included: `.github/workflows/docker-build.yml` (pushes to Docker Hub `Nate872711/audiarr`)
+GitHub Actions workflow included: `.github/workflows/docker-build.yml` (pushes to Docker Hub `nate872711/audiarr`)
 
 ---
 
